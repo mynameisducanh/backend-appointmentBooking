@@ -1,0 +1,71 @@
+plugins {
+    // Plugin Java cho dự án
+    id 'java'
+
+    // Plugin Spring Boot cho dự án
+    id 'org.springframework.boot' version '3.3.0'
+
+    // Plugin quản lý dependencies của Spring
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+// Thông tin về nhóm và phiên bản của dự án
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        // Cấu hình version Java sử dụng cho dự án
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    // Sử dụng Maven Central repository để tìm kiếm dependencies
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot JPA Starter cho tương tác với cơ sở dữ liệu
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Spring Boot Web Starter cho phát triển ứng dụng web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Boot Starter Validation cho hỗ trợ xác thực bean
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // ModelMapper cho mapping đối tượng
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
+    // MySQL JDBC Driver cho kết nối tới cơ sở dữ liệu MySQL
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // Lombok để giảm mã lặp
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    // Spring Boot Starter Test cho việc kiểm thử ứng dụng Spring Boot
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // JUnit Platform Launcher cho việc chạy kiểm thử
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.9.3'
+
+    // Spring Security Starter cho bảo mật ứng dụng
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.1.1'
+
+    // JWT implementation cho xử lý JSON Web Tokens
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Add Apache Commons Lang3 dependency
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+}
+
+// Cấu hình tasks cho kiểm thử
+tasks.named('test') {
+    // Sử dụng JUnit Platform cho kiểm thử
+    useJUnitPlatform()
+}
